@@ -11,5 +11,7 @@ namespace ContentInsurance.ViewModels
         public List<SelectListItem> CategoryList { get; set; }
 
         public IEnumerable<Content> Contents { get; set; }
+
+        public int Total { get; set; }
     }
 }

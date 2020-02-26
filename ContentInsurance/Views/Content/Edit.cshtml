@@ -1,52 +1,71 @@
 ﻿@model ContentAddViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Content Limit Insurance";
 }
 
 @using (Html.BeginForm())
 {
+    <link href="~/lib/css/StyleSheet.css" rel="stylesheet" />
+
     @foreach (var category in Model.Contents.GroupBy(f => f.Category))
     {
         <table>
-            <tr>
-                <td>
-                    <h2>@category.Key.Name</h2>
-                </td>
-                <td>
-                    <h2>@category.Key.TotalValue.ToString("c")</h2>
-                </td>
-            </tr>
-       
-            <tr>
-                <td><h3>Content</h3></td>
-                <td><h3>Value</h3></td>
-                <td><h3>Action</h3></td>
-            </tr>
-        @foreach (var content in category.Key.Contents)
-        {
-            <tr>
-                <td>
-                    @content.Name
-                </td>
-                <td>
-                    @content.Value.ToString("c")
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = content.ContentId })
-                </td>
-            </tr>
-        }
-        </table>
-        <hr/>
-    }
 
+            <tr></tr>
+            <tr>
+                <th>
+                    @category.Key.Name
+                </th>
+                <th>
+                    @category.Key.TotalValue.ToString("c")
+                </th>
+            </tr>
+        </table>
+        <table>
+            <tr></tr>
+            <tr>
+                <th>Content</th>
+                <th>Value</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var content in category.Key.Contents)
+            {
+                <tr>
+                    <td>
+                        @content.Name
+                    </td>
+                    <td>
+                        @content.Value.ToString("c")
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = content.ContentId })
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+    }
+    <table>
+        <tr></tr>
+        <tr>
+            <th>
+                Total
+            </th>
+            <th>
+                @Model.Total.ToString("c")
+            </th>
+        </tr>
+    </table>
 }
 @using (Html.BeginForm())
 {
-    <h4>Add Content</h4>
-    <hr />
     <table>
+        <tr>
+            <th>
+                Add Content
+            </th>
+        </tr>
         <tr>
             <td>@Html.TextBoxFor(f => f.Content.Name, new { @value = "Content Name" })</td>
             <td>@Html.TextBoxFor(f => f.Content.Value, new { @value = 0 })</td>

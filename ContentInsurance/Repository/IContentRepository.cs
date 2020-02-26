@@ -14,5 +14,7 @@ namespace ContentInsurance.Repository
         bool AddContent(Content content);
         
         bool RemoveContentById(int contentId);
+
+        int GetTotalForAllContentItems(IEnumerable<Content> contents);
     }
 }

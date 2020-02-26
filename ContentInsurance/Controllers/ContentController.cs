@@ -3,6 +3,7 @@ using ContentInsurance.Repository;
 using ContentInsurance.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,12 +28,14 @@ namespace ContentInsurance.Controllers
                 Content = content
             };
             var categories = _categoryRepository.AllCategories;
-            contentAddViewModel.CategoryList = new List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>();
+            contentAddViewModel.CategoryList = new List<SelectListItem>();
             foreach (var category in categories)
             {
-                contentAddViewModel.CategoryList.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem() { Text = category.Name, Value = category.CategoryId.ToString() });
+                contentAddViewModel.CategoryList.Add(new SelectListItem() { Text = category.Name, Value = category.CategoryId.ToString() });
             }
-            contentAddViewModel.Contents = _contentRepository.AllContents;
+            var contents = _contentRepository.AllContents;
+            contentAddViewModel.Contents = contents;
+            contentAddViewModel.Total = _contentRepository.GetTotalForAllContentItems(contents);
             return View(contentAddViewModel);
         }
 

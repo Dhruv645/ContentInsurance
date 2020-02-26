@@ -36,6 +36,11 @@ namespace ContentInsurance.Repository
             throw new NotImplementedException();
         }
 
+        public int GetTotalForAllContentItems(IEnumerable<Content> contents)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool RemoveContentById(int contentId)
         {
             throw new NotImplementedException();

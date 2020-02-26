@@ -33,6 +33,16 @@ namespace ContentInsurance.Repository
            return _appDbContext.Contents.Where(f => f.CategoryId == categoryId).Sum(f => f.Value);
         }
 
+        public int GetTotalForAllContentItems(IEnumerable<Content> contents)
+        {
+            var totalValue = 0;
+            foreach (var content in contents)
+            {
+                totalValue += content.Value;
+            }
+            return totalValue;
+        }
+
         public List<Content> GetContentByCategoryId(int categoryId)
         {
             return _appDbContext.Contents.Where(f => f.CategoryId == categoryId).ToList();

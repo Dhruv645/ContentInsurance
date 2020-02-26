@@ -2,7 +2,10 @@ using ContentInsurance.Infrastructure;
 using ContentInsurance.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -51,7 +54,14 @@ namespace ContentInsurance
 
             using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
             var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
-            context.Database.Migrate();
+            try
+            {
+                context.Database.Migrate();
+            }
+            catch(SqlException ex)
+            {
+
+            }
         }
     }
 }

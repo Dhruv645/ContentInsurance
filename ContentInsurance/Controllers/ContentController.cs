@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ContentInsurance.Models;
+﻿using ContentInsurance.Models;
 using ContentInsurance.Repository;
 using ContentInsurance.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,14 +17,6 @@ namespace ContentInsurance.Controllers
         {
             _contentRepository = contentRepository;
             _categoryRepository = categoryRepository;
-        }
-
-        public ViewResult List()
-        {
-            var contents = _contentRepository.AllContents;
-            ContentListViewModel contentListViewModel = new ContentListViewModel();
-            contentListViewModel.Contents = contents;
-            return View(contentListViewModel);
         }
 
         public ActionResult Edit()

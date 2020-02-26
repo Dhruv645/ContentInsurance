@@ -1,9 +1,6 @@
 ﻿using ContentInsurance.Infrastructure;
 using ContentInsurance.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ContentInsurance.Repository
 {

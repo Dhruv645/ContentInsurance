@@ -48,6 +48,10 @@ namespace ContentInsurance
                     name: "default",
                     pattern: "{controller=Content}/{action=Edit}/{id?}");
             });
+
+            using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+            context.Database.Migrate();
         }
     }
 }

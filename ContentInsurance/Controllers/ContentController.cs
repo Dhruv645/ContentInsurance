@@ -46,9 +46,9 @@ namespace ContentInsurance.Controllers
             return RedirectToAction("Edit");
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            _contentRepository.RemoveContentById(id.Value);
+            _contentRepository.RemoveContentById(id);
             return RedirectToAction("Edit");
         }
     }
